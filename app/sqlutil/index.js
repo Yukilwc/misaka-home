@@ -33,6 +33,6 @@ const insert = async (sqlStr, params) => {
 }
 
 module.exports = {
-    select,
-    insert,
+    pool,
+    sql,
 }

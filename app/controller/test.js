@@ -1,15 +1,16 @@
 // import sqlUtil from '../sqlutil/index'
-const sqlUtil = require('../sqlutil/index')
+const sql = require('../sqlutil/index')
+const {generateToken, parseToken} = require('../service/auth/token')
 const Controller = require('egg').Controller;
 
 
 class TestController extends Controller {
   async index() {
     const { ctx } = this;
-    // let res = await sqlUtil.select('select * from [test].[dbo].[user]')
-    // let res = await sqlUtil.select("insert into [test].[dbo].[user](id,name,level,role,add_time) values ('00000001','liwenchao','1','admin',getdate())")
-    // console.log('test res', res)
-    await sqlUtil.insert()
+    // let sqlStr = "insert into [test].[dbo].[user](id,name,level,role,add_time) values ('00000002','liwenchao','1','owner',@create_date)"
+    // await sql.pool.request().input('create_date', sql.sql.DateTime, new Date() ).query(sqlStr)
+    let token = generateToken()
+    parseToken(token)
     ctx.body = 'hi, egg';
   }
 }
